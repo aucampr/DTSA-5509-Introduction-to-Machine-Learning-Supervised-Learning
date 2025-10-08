@@ -1,0 +1,6 @@
+train: D:/repos/intro_to_ml/data/rdd2022/train/images
+val: D:/repos/intro_to_ml/data/rdd2022/val/images
+test: D:/repos/intro_to_ml/data/rdd2022/test/images
+nc: 5
+names: ['Longitudinal','Transverse','Crocodile','Other','Pothole']
+
