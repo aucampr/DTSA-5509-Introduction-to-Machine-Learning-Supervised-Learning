@@ -1,0 +1,76 @@
+python D:\repos\intro_to_ml\yolov5\train.py --img 640 --batch 32 --epochs 150 --data D:\repos\intro_to_ml\data\rdd2022\data.yaml --weights D:\repos\intro_to_ml\yolov5\yolov5l.pt --name exp_yolov5l_bs32_ep150 --project D:\repos\intro_to_ml\runs\train
+train: weights=D:\repos\intro_to_ml\yolov5\yolov5l.pt, cfg=, data=D:\repos\intro_to_ml\data\rdd2022\data.yaml, hyp=data\hyps\hyp.scratch-low.yaml, epochs=150, batch_size=32, imgsz=640, rect=False, resume=False, nosave=False, noval=False, noautoanchor=False, noplots=False, evolve=None, evolve_population=data\hyps, resume_evolve=None, bucket=, cache=None, image_weights=False, device=, multi_scale=False, single_cls=False, optimizer=SGD, sync_bn=False, workers=8, project=D:\repos\intro_to_ml\runs\train, name=exp_yolov5l_bs32_ep150, exist_ok=False, quad=False, cos_lr=False, label_smoothing=0.0, patience=100, freeze=[0], save_period=-1, seed=0, local_rank=-1, entity=None, upload_dataset=False, bbox_interval=-1, artifact_alias=latest, ndjson_console=False, ndjson_file=False
+github:  YOLOv5 is out of date by 3 commits. Use 'git pull' or 'git clone https://github.com/ultralytics/yolov5' to update.
+YOLOv5  v7.0-430-g459d8bf0 Python-3.13.3 torch-2.8.0+cu126 CUDA:0 (NVIDIA RTX A6000, 49140MiB)
+
+hyperparameters: lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=0.05, cls=0.5, cls_pw=1.0, obj=1.0, obj_pw=1.0, iou_t=0.2, anchor_t=4.0, fl_gamma=0.0, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, mosaic=1.0, mixup=0.0, copy_paste=0.0
+Comet: run 'pip install comet_ml' to automatically track and visualize YOLOv5  runs in Comet
+TensorBoard: Start with 'tensorboard --logdir D:\repos\intro_to_ml\runs\train', view at http://localhost:6006/
+Overriding model.yaml nc=80 with nc=5
+
+                 from  n    params  module                                  arguments
+  0                -1  1      7040  models.common.Conv                      [3, 64, 6, 2, 2]
+  1                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  2                -1  3    156928  models.common.C3                        [128, 128, 3]
+  3                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  4                -1  6   1118208  models.common.C3                        [256, 256, 6]
+  5                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+  6                -1  9   6433792  models.common.C3                        [512, 512, 9]
+  7                -1  1   4720640  models.common.Conv                      [512, 1024, 3, 2]
+  8                -1  3   9971712  models.common.C3                        [1024, 1024, 3]
+  9                -1  1   2624512  models.common.SPPF                      [1024, 1024, 5]
+ 10                -1  1    525312  models.common.Conv                      [1024, 512, 1, 1]
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]
+ 13                -1  3   2757632  models.common.C3                        [1024, 512, 3, False]
+ 14                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]
+ 17                -1  3    690688  models.common.C3                        [512, 256, 3, False]
+ 18                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]
+ 20                -1  3   2495488  models.common.C3                        [512, 512, 3, False]
+ 21                -1  1   2360320  models.common.Conv                      [512, 512, 3, 2]
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]
+ 23                -1  3   9971712  models.common.C3                        [1024, 1024, 3, False]        
+ 24      [17, 20, 23]  1     53850  models.yolo.Detect                      [5, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [256, 512, 1024]]
+Model summary: 368 layers, 46159834 parameters, 46159834 gradients, 108.3 GFLOPs
+
+Transferred 607/613 items from D:\repos\intro_to_ml\yolov5\yolov5l.pt
+D:\repos\intro_to_ml\yolov5\models\common.py:906: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with amp.autocast(autocast):
+D:\repos\intro_to_ml\yolov5\models\common.py:906: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with amp.autocast(autocast):
+AMP: checks passed 
+optimizer: SGD(lr=0.01) with parameter groups 101 weight(decay=0.0), 104 weight(decay=0.0005), 104 bias
+WARNING  DP not recommended, use torch.distributed.run for best DDP Multi-GPU results.
+See Multi-GPU Tutorial at https://docs.ultralytics.com/yolov5/tutorials/multi_gpu_training to get started.
+train: Scanning D:\repos\intro_to_ml\data\rdd2022\train\labels.cache... 26869 images, 8097 backgrounds, 0 corrupt: 100%|██████████| 26869/26869 [00:00<?, ?it/s]
+train: WARNING  D:\repos\intro_to_ml\data\rdd2022\train\images\Japan_006916.jpg: 1 duplicate labels removed
+train: WARNING  D:\repos\intro_to_ml\data\rdd2022\train\images\Japan_011427.jpg: 1 duplicate labels removed
+val: Scanning D:\repos\intro_to_ml\data\rdd2022\val\labels.cache... 5758 images, 1837 backgrounds, 0 corrupt: 100%|██████████| 5758/5758 [00:00<?, ?it/s]
+val: WARNING  D:\repos\intro_to_ml\data\rdd2022\val\images\Japan_006536.jpg: 1 duplicate labels removed
+
+AutoAnchor: 4.09 anchors/target, 0.984 Best Possible Recall (BPR). Current anchors are a good fit to dataset
+Plotting labels to D:\repos\intro_to_ml\runs\train\exp_yolov5l_bs32_ep1503\labels.jpg... 
+D:\repos\intro_to_ml\yolov5\train.py:357: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = torch.cuda.amp.GradScaler(enabled=amp)
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to D:\repos\intro_to_ml\runs\train\exp_yolov5l_bs32_ep1503
+Starting training for 150 epochs...
+
+150 epochs completed in 16.128 hours.
+Optimizer stripped from D:\repos\intro_to_ml\runs\train\exp_yolov5l_bs32_ep1503\weights\last.pt, 92.9MB
+Optimizer stripped from D:\repos\intro_to_ml\runs\train\exp_yolov5l_bs32_ep1503\weights\best.pt, 92.9MB
+
+Validating D:\repos\intro_to_ml\runs\train\exp_yolov5l_bs32_ep1503\weights\best.pt...
+Fusing layers... 
+Model summary: 267 layers, 46129818 parameters, 0 gradients, 107.7 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 90/90 [01:06<00:00,  1.35it/s]
+                   all       5758       9740      0.663      0.608      0.642      0.342
+          Longitudinal       5758       3890      0.628      0.584      0.603      0.326
+            Transverse       5758       1769      0.654      0.513      0.574       0.28
+             Crocodile       5758       1553      0.715       0.63      0.674      0.349
+                 Other       5758       1563      0.679        0.8      0.804      0.505
+               Pothole       5758        965       0.64      0.514      0.556      0.248
